@@ -1,4 +1,3 @@
-require 'spec_helper'
 require 'backup_location'
 require 'date'
 

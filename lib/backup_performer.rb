@@ -1,14 +1,15 @@
-require 'net/http'
-require 'date'
+require 'active_model'
 
 class BackupPerformer
-  def self.backup_location
-    File.expand_path(File.join(__FILE__, '..', '..', 'backups', Date.today.to_s))
+  include ActiveModel::Validations
+  
+  attr_accessor :backup_location
+
+  def initialize(*args)
+    self.backup_location = BackupLocation.new
   end
 
-  def initialize(global_options={}, options={}, args={})
-
-  end
+  delegate :directory, :to => :backup_location, :prefix => true
 
   def ready?
     false

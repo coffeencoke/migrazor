@@ -1,10 +1,17 @@
-require_relative '../../lib/backup_performer'
-require 'date'
+require 'backup_performer'
+
+BackupLocation = Class.new unless Kernel.const_defined?('BackupLocation')
 
 describe BackupPerformer do
-  it 'has a default backup location' do
-    expected_backup_location = File.expand_path(File.join(__FILE__, '..', '..', '..', 'backups', Date.today.to_s))
-    BackupPerformer.backup_location.should == expected_backup_location
+  let(:mock_backup_directory) { mock 'a directory to store the backup' }
+  let(:mock_backup_location) { mock 'a backup location object', :directory => mock_backup_directory }
+
+  before do
+    BackupLocation.stub(:new => mock_backup_location)
+  end
+
+  it 'has a backup directory' do
+    subject.backup_location_directory.should == mock_backup_directory
   end
 
   describe "when no server configuration exists" do

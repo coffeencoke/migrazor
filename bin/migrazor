@@ -15,6 +15,7 @@ require 'rubygems'
 require 'gli'
 require 'migrazor_version'
 require 'backup_performer'
+require 'backup_location'
 
 include GLI
 
@@ -39,7 +40,7 @@ command :backup do |c|
      Migrazor happened
 ****************************
 
-Files and Databases have been backed up successfully and are located at #{BackupPerformer.backup_location}
+Files and Databases have been backed up successfully and are located at #{backup_performer.backup_location_directory}
 )
     else
       puts %Q(
