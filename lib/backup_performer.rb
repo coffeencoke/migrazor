@@ -1,14 +1,16 @@
+require 'net/http'
+
 class BackupPerformer
   def self.backup_location
 
   end
 
-  def initialize(global_options, options, args)
+  def initialize(global_options={}, options={}, args={})
 
   end
 
   def ready?
-
+    false
   end
 
   def call
@@ -16,6 +18,6 @@ class BackupPerformer
   end
 
   def errors
-
+    ['No config/server.yml config file found.']
   end
 end
