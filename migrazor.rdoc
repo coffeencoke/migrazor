@@ -1,0 +1,5 @@
+= migrazor
+
+Generate this with
+    migrazor rdoc
+After you have described your command line interface

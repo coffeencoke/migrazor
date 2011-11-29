@@ -1,2 +1,2 @@
-rvm use 1.9.2@migrate_hosts --create
+rvm use 1.9.2@migrazor --create
 

@@ -1,0 +1,6 @@
+= migrazor
+
+Migrate from one host to the next
+
+:include:migrazor.rdoc
+
