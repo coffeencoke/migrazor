@@ -13,11 +13,7 @@ spec = Gem::Specification.new do |s|
 bin/migrazor
   )
   s.require_paths << 'lib'
-  s.has_rdoc = true
-  s.extra_rdoc_files = ['README.rdoc','migrazor.rdoc']
-  s.rdoc_options << '--title' << 'migrazor' << '--main' << 'README.rdoc' << '-ri'
   s.bindir = 'bin'
   s.executables << 'migrazor'
   s.add_development_dependency('rake')
-  s.add_development_dependency('rdoc')
 end

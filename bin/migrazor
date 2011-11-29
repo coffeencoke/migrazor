@@ -17,33 +17,40 @@ require 'migrazor_version'
 
 include GLI
 
-program_desc 'Describe your application here'
+program_desc 'Migrate from one host to the next'
 
 version Migrazor::VERSION
 
-desc 'Describe some switch here'
-switch [:s,:switch]
-
-desc 'Describe some flag here'
-default_value 'the default'
-arg_name 'The name of the argument'
-flag [:f,:flagname]
-
-desc 'Describe backup here'
-arg_name 'Describe arguments to backup here'
+desc 'Backup the files and databases from the old server'
 command :backup do |c|
-  c.desc 'Describe a switch to backup'
-  c.switch :s
+  c.desc 'Dry run, display what will happen but do not execute'
+  c.switch :dry, :d
 
-  c.desc 'Describe a flag to backup'
-  c.default_value 'default'
-  c.flag :f
+  c.desc 'Force backup, overwrite existing backups'
+  c.switch :force, :f
+
   c.action do |global_options,options,args|
+    backup_performer = BackupPerformer.new(global_options, options, args)
+    if backup_performer.ready?
+      backup_performer.call
+      puts %Q(
+****************************
+     Migrazor happened
+****************************
 
-    # Your command logic here
-     
-    # If you have any errors, just raise them
-    # raise "that command made no sense"
+Files and Databases have been backed up successfully and are located at #{BackupPerformer.backup_location}
+)
+    else
+      puts %Q(
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+      Migrazor Failed
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+Files and Databases could not begin backup because...
+
+#{backup_performer.errors.join("\n")}
+)
+    end
   end
 end
 
