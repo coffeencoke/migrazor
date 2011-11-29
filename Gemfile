@@ -2,6 +2,6 @@ source :rubygems
 
 gem 'rspec'
 gem 'gli'
-gem 'rails'
+gem 'activemodel'
 
 gemspec
