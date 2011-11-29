@@ -13,6 +13,6 @@ Backup
 
 Backs up all files and databases to your local disk.
 
-``migrazor backup``
+``$ migrazor backup``
 
 Available options are force and dry.
