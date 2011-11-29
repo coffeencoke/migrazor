@@ -15,13 +15,20 @@ describe BackupPerformer do
   end
 
   describe "when no server configuration exists" do
+    let(:mock_server_config) { mock 'server config', :valid? => false }
+
+    before do
+      ServerConfig.stub(:new => mock_server_config)
+    end
+
     it 'is not ready' do
       subject.should_not be_ready
     end
 
     it 'has errors describing how to get ready' do
+      pending 'need to create a validates_associated validator for server config'
       subject.valid?
-      
+
       subject.errors[:server_config].should == ['not found, please ensure that the config/server.yml file exists.']
     end
   end

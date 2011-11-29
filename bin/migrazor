@@ -16,6 +16,7 @@ require 'gli'
 require 'migrazor_version'
 require 'backup_performer'
 require 'backup_location'
+require 'server_config'
 
 include GLI
 
@@ -50,7 +51,7 @@ Files and Databases have been backed up successfully and are located at #{backup
 
 Files and Databases could not begin backup because...
 
-#{backup_performer.errors.full_messages.join("\n")}
+#{(backup_performer.errors.full_messages + backup_performer.server_config.errors.full_messages).join("\n")}
 )
     end
   end
