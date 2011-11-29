@@ -11,7 +11,7 @@ end
 desc "Run the code examples in spec"
 task :spec do
   RSpec::Core::RakeTask.new do |t|
-    t.pattern = "./specs/**/*_spec.rb"
+    t.pattern = "./spec/**/*_spec.rb"
   end
 end
 
