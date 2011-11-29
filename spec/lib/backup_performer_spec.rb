@@ -20,7 +20,9 @@ describe BackupPerformer do
     end
 
     it 'has errors describing how to get ready' do
-      subject.errors.should == ['No config/server.yml config file found.']
+      subject.valid?
+      
+      subject.errors[:server_config].should == ['not found, please ensure that the config/server.yml file exists.']
     end
   end
 end

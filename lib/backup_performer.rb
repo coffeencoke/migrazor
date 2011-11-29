@@ -5,6 +5,8 @@ class BackupPerformer
   
   attr_accessor :backup_location
 
+  validates :server_config, :presence => { :message => 'not found, please ensure that the config/server.yml file exists.'}
+
   def initialize(*args)
     self.backup_location = BackupLocation.new
   end
@@ -12,14 +14,14 @@ class BackupPerformer
   delegate :directory, :to => :backup_location, :prefix => true
 
   def ready?
-    false
+    valid?
   end
 
   def call
 
   end
 
-  def errors
-    ['No config/server.yml config file found.']
+  def server_config
+    nil
   end
 end
